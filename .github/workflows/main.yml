@@ -1,7 +1,6 @@
 # 每天00:00执行
 
 name: Start
-
 on:
    push:
    gollum:
