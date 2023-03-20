@@ -37,7 +37,7 @@ public class Main {
 		String[][] params = {{"operation","qiandao"},{"formhash",formHash},{"Cookie","cQWy_2132_saltkey=" + saltKey + ";cQWy_2132_auth=" + cQWy_2132_auth}};
 		headers = new String[][]{{"Cookie",params[2][1]},{"Referer","https://bbs.binmt.cc/forum.php"},{"User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"}};
 		request = HttpRequest.get("https://bbs.binmt.cc/k_misign-sign.html", params, headers);
-		if (request.text.contains("今日已签")) {
+		if (request.text.contains("您的签到排名")) {
 			System.out.println("MT论坛---今日已签");
 		} else if (request.text.length() == 2) {
 			System.out.println("MT论坛---签到成功");
