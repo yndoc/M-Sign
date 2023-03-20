@@ -16,11 +16,11 @@ public class Main {
 		Matcher matcher = Pattern.compile("saltkey=(.*?);").matcher(request.cookies);
 		if (matcher.find()) saltKey = matcher.group(1);
 		String formHash = "";
-		matcher = Pattern.compile("formhash=(.*?)&amp").matcher(request.text);
+		matcher = Pattern.compile("formhash=(.*?)&").matcher(request.text);
 		if (matcher.find()) formHash = matcher.group(1);
 
 		//登录
-		String data = "formhash=" + formHash + "&referer=https%3A%2F%2Fbbs.binmt.cc%2Fk_misign-sign.html&fastloginfield=username&cookietime=31104000&username=" + username + "&password=" + password + "&questionid=0&answer=&submit=true";
+		String data = "formhash=" + formHash + "&referer=https%3A%2F%2Fbbs.binmt.cc%2Fk_misign-sign.html&loginfield=username&cookietime=31104000&username=" + username + "&password=" + password + "&questionid=0&answer=&submit=true";
 		headers = new String[][]{{"Cookie","cQWy_2132_saltkey=" + saltKey},{"Content-type","application/x-www-form-urlencoded; charset=UTF-8"},{"User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"}};
 		request = HttpRequest.post("https://bbs.binmt.cc/member.php?mod=logging&action=login&loginsubmit=yes&loginhash=&handlekey=loginform&inajax=1", data, headers);
 		String cQWy_2132_auth = "";
@@ -30,7 +30,7 @@ public class Main {
 		//获取formhash
 		headers = new String[][]{{"accept","text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"},{"User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"},{"Cookie","cQWy_2132_saltkey=" + saltKey + ";cQWy_2132_auth=" + cQWy_2132_auth}};
 		request = HttpRequest.get("https://bbs.binmt.cc/k_misign-sign.html", headers);
-		matcher = Pattern.compile("formhash=(.*?)&amp").matcher(request.text);
+		matcher = Pattern.compile("formhash=(.*?)&").matcher(request.text);
 		if (matcher.find()) formHash = matcher.group(1);
 
 		//签到
